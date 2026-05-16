@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表白邀请函</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft Yahei", sans-serif;
+        }
+        body {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #fff0f3;
+            overflow: hidden;
+        }
+        .title {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        .emoji {
+            width: 200px;
+            height: 200px;
+            background: #f7d87c;
+            border-radius: 50%;
+            position: relative;
+            margin-bottom: 50px;
+            border: 2px solid #e6b85c;
+            transition: all 0.5s ease;
+        }
+        .eye-outer {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            width: 55px;
+            height: 65px;
+            top: 45px;
+            transition: all 0.5s;
+        }
+        .eye-outer.left { left: 35px; }
+        .eye-outer.right { right: 35px; }
+        .eye-inner {
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            background: #333;
+            border-radius: 50%;
+            top: 65px;
+            transition: all 0.5s;
+        }
+        .eye-inner.left { left: 50px; }
+        .eye-inner.right { right: 50px; }
+        .cheek {
+            position: absolute;
+            width: 35px;
+            height: 20px;
+            background: #f8a898;
+            border-radius: 50%;
+            opacity: 0.8;
+            top: 110px;
+            transition: all 0.5s;
+        }
+        .cheek.left { left: 25px; }
+        .cheek.right { right: 25px; }
+        .mouth {
+            position: absolute;
+            width: 90px;
+            height: 45px;
+            background: #ed2633;
+            border-radius: 0 0 45px 45px;
+            top: 120px;
+            left: 55px;
+            transition: all 0.5s;
+        }
+        .tooth {
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            background: white;
+            border-radius: 0 0 6px 6px;
+            top: 120px;
+            left: 96px;
+            transition: all 0.5s;
+        }
+        .tear{
+            position:absolute;
+            width:8px;height:15px;
+            background:#87ceeb;
+            border-radius:50%;
+            opacity:0;
+            transition:0.5s;
+        }
+        .tear-l{left:50px;top:90px;}
+        .tear-r{right:50px;top:90px;}
+
+        /* 42种 重度悲伤表情 差距超大 */
+        .sad1 .eye-inner{transform:scale(0.6)}
+        .sad1 .mouth{height:30px;border-radius:0 0 20px 20px}
+        .sad2 .eye-outer{height:35px;top:60px}
+        .sad2 .eye-inner{transform:scale(0.4)}
+        .sad2 .cheek{opacity:0.2}
+        .sad2 .mouth{height:20px;border-radius:25px 25px 0 0;background:#777}
+        .sad2 .tooth{display:none}
+        .sad3 .eye-outer{height:20px;top:70px}
+        .sad3 .eye-inner{display:none}
+        .sad3 .cheek{opacity:0}
+        .sad3 .mouth{height:15px;width:50px;left:75px;top:130px}
+        .sad4 .tear{opacity:1;transform:scale(2)}
+        .sad4 .mouth{background:#666}
+        .sad5{background:#e9b060}
+        .sad5 .mouth{background:#444;height:8px}
+        .sad6 .eye-inner{top:85px}
+        .sad6 .mouth{width:40px;left:80px;height:12px}
+        .sad7 .eye-outer{transform:rotate(25deg)}
+        .sad8 .eye-outer{transform:rotate(-25deg)}
+        .sad9 .cheek{background:#ff5555;opacity:1}
+        .sad9 .mouth{top:135px}
+        .sad10 .mouth{border-radius:50%;width:20px;height:20px;top:138px;background:#555}
+        .sad11 .eye-inner{width:8px;height:8px}
+        .sad12{filter:saturate(0.3) brightness(0.7)}
+        .sad13 .mouth{height:5px}
+        .sad13 .eye-inner{transform:scale(0.3)}
+        .sad14 .tear{opacity:1;transform:scale(2.5)}
+        .sad15 .eye-outer{height:15px;top:75px}
+        .sad16 .mouth{width:30px;left:85px;height:10px}
+        .sad17 .eye-inner{top:90px;opacity:0.4}
+        .sad18 .mouth{transform:rotate(15deg)}
+        .sad19 .mouth{transform:rotate(-15deg)}
+        .sad20 .eye-inner{transform:translateY(15px)}
+        .sad21{background:#e29e50}
+        .sad21 .mouth{height:6px}
+        .sad22 .eye-inner{width:6px;height:18px}
+        .sad23 .cheek{width:20px;height:12px;top:115px}
+        .sad24 .mouth{width:60px;left:70px;height:14px}
+        .sad25 .tear{opacity:1;top:105px;width:12px;height:25px}
+        .sad26 .eye-outer{width:35px}
+        .sad27 .mouth{height:25px;border-radius:5px}
+        .sad28{filter:brightness(0.7)}
+        .sad29 .mouth{width:15px;height:15px}
+        .sad30 .mouth{background:#aa3333}
+        .sad31 .eye-outer{top:55px}
+        .sad31 .mouth{top:140px}
+        .sad32 .cheek{top:125px;opacity:0.1}
+        .sad33 .eye-inner{transform:scale(0.2)}
+        .sad34 .mouth{width:70px;height:6px}
+        .sad35{filter:grayscale(0.6)}
+        .sad36 .tear{width:12px;height:25px}
+        .sad37 .eye-outer{height:55px}
+        .sad37 .mouth{width:35px}
+        .sad38 .tooth{opacity:0}
+        .sad39 .mouth{top:142px}
+        .sad40 .eye-inner.left{left:40px}
+        .sad40 .eye-inner.right{right:40px}
+        .sad41{background:#e08e48}
+        .sad42 .tear{opacity:1;top:98px}
+
+        .btn-group {
+            display: flex;
+            gap: 150px;
+        }
+        button {
+            padding: 12px 35px;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .accept {
+            background-color: #ff6b81;
+            color: white;
+        }
+        .refuse {
+            background-color: #999;
+            color: white;
+            position: relative;
+        }
+        .happy-text{
+            position:fixed;
+            top:50%;left:50%;
+            transform:translate(-50%,-50%);
+            font-size:40px;
+            color:#ff3366;
+            font-weight:bold;
+            text-shadow:2px 2px #fff;
+            display:none;
+            z-index:999;
+        }
+        .float-text{
+            position: fixed;
+            color: #ff2e5c;
+            font-size: 42px;
+            font-weight: 900;
+            pointer-events: none;
+            animation: floatUp 1.8s forwards;
+            z-index: 10;
+            text-shadow: 1px 1px 3px #fff;
+        }
+        @keyframes floatUp {
+            0%{opacity:1; transform: translateY(0) scale(1);}
+            100%{opacity:0; transform: translateY(-80px) scale(1.2);}
+        }
+    </style>
+</head>
+<body>
+    <div class="title">出来玩吗</div>
+    
+    <div class="emoji" id="face">
+        <div class="eye-outer left"></div>
+        <div class="eye-outer right"></div>
+        <div class="eye-inner left"></div>
+        <div class="eye-inner right"></div>
+        <div class="cheek left"></div>
+        <div class="cheek right"></div>
+        <div class="mouth"></div>
+        <div class="tooth"></div>
+        <div class="tear tear-l"></div>
+        <div class="tear tear-r"></div>
+    </div>
+
+    <div class="btn-group">
+        <button class="accept" id="yesBtn">答应你</button>
+        <button class="refuse" id="refuseBtn">拒绝</button>
+    </div>
+
+    <div class="happy-text" id="happyWord">双向奔赴，满心欢喜💓</div>
+
+    <script>
+        const refuseBtn = document.getElementById('refuseBtn');
+        const yesBtn = document.getElementById('yesBtn');
+        const face = document.getElementById('face');
+        const happyWord = document.getElementById('happyWord');
+        
+        const sadList = [
+            'sad1','sad2','sad3','sad4','sad5','sad6','sad7','sad8','sad9','sad10',
+            'sad11','sad12','sad13','sad14','sad15','sad16','sad17','sad18','sad19','sad20',
+            'sad21','sad22','sad23','sad24','sad25','sad26','sad27','sad28','sad29','sad30',
+            'sad31','sad32','sad33','sad34','sad35','sad36','sad37','sad38','sad39','sad40','sad41','sad42'
+        ];
+
+        function showFloatText(){
+            let text = document.createElement('div');
+            text.className = 'float-text';
+            text.innerText = '出来呀出来呀';
+            text.style.left = Math.random()*innerWidth + 'px';
+            text.style.top = Math.random()*innerHeight + 'px';
+            document.body.appendChild(text);
+            setTimeout(()=>text.remove(), 1800);
+        }
+
+        function randomSad(){
+            sadList.forEach(s => face.classList.remove(s));
+            let idx = Math.floor(Math.random() * sadList.length);
+            face.classList.add(sadList[idx]);
+        }
+
+        function backHappy(){
+            sadList.forEach(s => face.classList.remove(s));
+            happyWord.style.display = 'block';
+            setTimeout(()=>happyWord.style.display='none', 2500);
+            alert('终于等到你！🥰');
+        }
+
+        refuseBtn.addEventListener('mouseover', () => {
+            let maxX = innerWidth - refuseBtn.offsetWidth;
+            let maxY = innerHeight - refuseBtn.offsetHeight;
+            refuseBtn.style.position = 'fixed';
+            refuseBtn.style.left = Math.random()*maxX + 'px';
+            refuseBtn.style.top = Math.random()*maxY + 'px';
+            randomSad();
+            showFloatText();
+        });
+
+        yesBtn.addEventListener('click', backHappy);
+    </script>
+</body>
+</html>
